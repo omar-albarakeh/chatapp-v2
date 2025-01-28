@@ -15,6 +15,13 @@ class _SignuppageState extends State<Signuppage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Hello Signup", style: TextStyle(fontSize: 40)),
+              Icon(Icons.handshake, size: 40),
+            ],
+          ),
         ],
       ),
     );

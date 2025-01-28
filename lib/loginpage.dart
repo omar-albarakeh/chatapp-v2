@@ -18,7 +18,7 @@ class _LoginpageState extends State<Loginpage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
-            mainAxisSize: MainAxisSize.min, // Ensures minimal width
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text("Welcome Back ", style: TextStyle(fontSize: 40)),
               Icon(Icons.handshake, size: 40),
