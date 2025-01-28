@@ -13,11 +13,6 @@ class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor:Colors.orange,
-        title: Text("loginPage" ,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
-        centerTitle: true,
-      ),
       body:Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,6 +47,7 @@ class _LoginpageState extends State<Loginpage> {
           ElevatedButton(
               onPressed: (){},
               style: ElevatedButton.styleFrom(
+                minimumSize: Size(300,50),
                 padding: EdgeInsets.symmetric(vertical: 15),
                 textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
