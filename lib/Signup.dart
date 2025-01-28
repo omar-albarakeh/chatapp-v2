@@ -8,7 +8,8 @@ class Signuppage extends StatefulWidget {
 }
 
 class _SignuppageState extends State<Signuppage> {
-  bool _isVisible = false;
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +21,12 @@ class _SignuppageState extends State<Signuppage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
+              const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text("Hello Signup", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
-                  const SizedBox(width: 10),
-                  const Icon(Icons.handshake, size: 32),
+                  Text("Hello Signup", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                  SizedBox(width: 10),
+                  Icon(Icons.handshake, size: 32),
                 ],
               ),
               const SizedBox(height: 30),
@@ -43,32 +44,39 @@ class _SignuppageState extends State<Signuppage> {
                   labelText: "Password",
                   prefixIcon: const Icon(Icons.lock),
                   suffixIcon: IconButton(
-                    icon: Icon(_isVisible ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
                     onPressed: () {
                       setState(() {
-                        _isVisible = !_isVisible;
+                        _isPasswordVisible = !_isPasswordVisible;
                       });
                     },
                   ),
                   border: const OutlineInputBorder(),
                 ),
-                obscureText: !_isVisible,
+                obscureText: !_isPasswordVisible,
               ),
               const SizedBox(height: 15),
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
                   labelText: "Confirm Password",
-                  prefixIcon: Icon(Icons.lock),
-                  border: OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(_isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                      });
+                    },
+                  ),
+                  border: const OutlineInputBorder(),
                 ),
-                obscureText: true,
+                obscureText: !_isConfirmPasswordVisible,
               ),
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
