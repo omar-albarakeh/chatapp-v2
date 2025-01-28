@@ -8,9 +8,11 @@ class Signuppage extends StatefulWidget {
 }
 
 class _SignuppageState extends State<Signuppage> {
+
+  bool _isvisible =false;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,7 +24,9 @@ class _SignuppageState extends State<Signuppage> {
               Icon(Icons.handshake, size: 40),
             ],
           ),
-          SizedBox(height: 30,),
+          SizedBox(
+            height: 30,
+          ),
           TextField(
             decoration: InputDecoration(
               labelText: "Email",
@@ -30,22 +34,29 @@ class _SignuppageState extends State<Signuppage> {
               border: OutlineInputBorder(),
             ),
           ),
-              SizedBox(height: 15,),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Password",
-                  prefixIcon: Icon(Icons.lock),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              SizedBox(height: 15,),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Confirmed Password",
-                  prefixIcon: Icon(Icons.lock),
-                  border: OutlineInputBorder(),
-                ),
-              ),
+          SizedBox(
+            height: 15,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              labelText: "Password",
+              prefixIcon: Icon(Icons.lock),
+              suffixIcon: IconButton(
+                  icon: Icon( _isvisible ? Icons.visibility : Icons.visibility_off),
+                onPressed: () {  },),
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              labelText: "Confirmed Password",
+              prefixIcon: Icon(Icons.lock),
+              border: OutlineInputBorder(),
+            ),
+          ),
         ]));
   }
 }
