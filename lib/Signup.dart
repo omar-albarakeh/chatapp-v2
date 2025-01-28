@@ -38,6 +38,14 @@ class _SignuppageState extends State<Signuppage> {
                   border: OutlineInputBorder(),
                 ),
               ),
+              SizedBox(height: 15,),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Confirmed Password",
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
+                ),
+              ),
         ]));
   }
 }
