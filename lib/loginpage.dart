@@ -29,6 +29,7 @@ class _LoginpageState extends State<Loginpage> {
               prefixIcon: Icon(Icons.email),
             ),
           ),
+          SizedBox(height: 20),
           TextField(
             decoration: InputDecoration(
               labelText: "password",
@@ -36,7 +37,9 @@ class _LoginpageState extends State<Loginpage> {
               prefixIcon: Icon(Icons.lock),
             ),
             obscureText: _visible,
-          )
+          ),
+          SizedBox(height: 20),
+          
         ],
       ),
     );
