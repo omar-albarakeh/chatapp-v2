@@ -49,7 +49,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             obscureText: _visible,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 40),
           ElevatedButton(
               onPressed: (){},
               style: ElevatedButton.styleFrom(
