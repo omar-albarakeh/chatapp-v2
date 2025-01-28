@@ -11,10 +11,10 @@ class _SignuppageState extends State<Signuppage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -22,8 +22,11 @@ class _SignuppageState extends State<Signuppage> {
               Icon(Icons.handshake, size: 40),
             ],
           ),
-        ],
-      ),
-    );
+          TextField(
+            decoration: InputDecoration(
+              labelText: "Email",
+            ),
+          ),
+        ]));
   }
 }
