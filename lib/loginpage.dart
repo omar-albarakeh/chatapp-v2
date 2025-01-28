@@ -29,7 +29,14 @@ class _LoginpageState extends State<Loginpage> {
               prefixIcon: Icon(Icons.email),
             ),
           ),
-          
+          TextField(
+            decoration: InputDecoration(
+              labelText: "password",
+              border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.lock),
+            ),
+            obscureText: _visible,
+          )
         ],
       ),
     );
