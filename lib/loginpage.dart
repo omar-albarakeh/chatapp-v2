@@ -9,7 +9,7 @@ class Loginpage extends StatefulWidget {
 
 class _LoginpageState extends State<Loginpage> {
 
-  bool _visible = false;
+  bool _visible = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class _LoginpageState extends State<Loginpage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: "Email",
               border: OutlineInputBorder(),
@@ -35,11 +35,21 @@ class _LoginpageState extends State<Loginpage> {
               labelText: "password",
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.lock),
+              suffixIcon: IconButton(
+                icon : Icon(_visible ? Icons.visibility_off: Icons.visibility),
+                onPressed :(){
+                  setState(
+                      (){
+                        _visible= !_visible;});
+                      },
+              ),
             ),
             obscureText: _visible,
           ),
           SizedBox(height: 20),
-          
+          ElevatedButton(
+              onPressed: (){},
+              child: Text("Login")),
         ],
       ),
     );
