@@ -43,9 +43,14 @@ class _SignuppageState extends State<Signuppage> {
               prefixIcon: Icon(Icons.lock),
               suffixIcon: IconButton(
                   icon: Icon( _isvisible ? Icons.visibility : Icons.visibility_off),
-                onPressed: () {  },),
+                onPressed: () {
+                    setState(() {
+                      _isvisible=!_isvisible;
+                    });
+                },),
               border: OutlineInputBorder(),
             ),
+            obscureText: _isvisible,
           ),
           SizedBox(
             height: 15,
