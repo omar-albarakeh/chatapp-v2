@@ -18,6 +18,20 @@ class _LoginpageState extends State<Loginpage> {
         title: Text("loginPage" ,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
         centerTitle: true,
       ),
+      body:Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              labelText: "Email",
+              border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.email),
+            ),
+          ),
+          
+        ],
+      ),
     );
   }
 }
