@@ -17,7 +17,7 @@ class _SignuppageState extends State<Signuppage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.blue],
+            colors: [Colors.green.shade700, Colors.blue],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -32,27 +32,36 @@ class _SignuppageState extends State<Signuppage> {
                 const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Hello Signup", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold,color: Colors.white)),
+                    Text("Hello Signup", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white)),
                     SizedBox(width: 10),
-                    Icon(Icons.handshake, size: 32),
+                    Icon(Icons.handshake, size: 32, color: Colors.white),
                   ],
                 ),
                 const SizedBox(height: 30),
-                const TextField(
+                TextField(
                   decoration: InputDecoration(
                     labelText: "Email",
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(),
+                    labelStyle: const TextStyle(color: Colors.white),
+                    prefixIcon: const Icon(Icons.email, color: Colors.white),
+                    border: const OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange.shade500),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 15),
                 TextField(
                   decoration: InputDecoration(
                     labelText: "Password",
-                    prefixIcon: const Icon(Icons.lock),
+                    labelStyle: const TextStyle(color: Colors.white),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white),
                     suffixIcon: IconButton(
-                      icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                      icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off, color: Colors.white),
                       onPressed: () {
                         setState(() {
                           _isPasswordVisible = !_isPasswordVisible;
@@ -60,16 +69,24 @@ class _SignuppageState extends State<Signuppage> {
                       },
                     ),
                     border: const OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange.shade500),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
                   ),
                   obscureText: !_isPasswordVisible,
+                  style: const TextStyle(color: Colors.white),
                 ),
                 const SizedBox(height: 15),
                 TextField(
                   decoration: InputDecoration(
                     labelText: "Confirm Password",
-                    prefixIcon: const Icon(Icons.lock),
+                    labelStyle: const TextStyle(color: Colors.white),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white),
                     suffixIcon: IconButton(
-                      icon: Icon(_isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                      icon: Icon(_isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off, color: Colors.white),
                       onPressed: () {
                         setState(() {
                           _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
@@ -77,8 +94,15 @@ class _SignuppageState extends State<Signuppage> {
                       },
                     ),
                     border: const OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange.shade500),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
                   ),
                   obscureText: !_isConfirmPasswordVisible,
+                  style: const TextStyle(color: Colors.white),
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
@@ -86,10 +110,11 @@ class _SignuppageState extends State<Signuppage> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange.shade500,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    child: const Text("Sign Up"),
+                    child: const Text("Sign Up", style: TextStyle(color: Colors.white)),
                   ),
                 ),
               ],
