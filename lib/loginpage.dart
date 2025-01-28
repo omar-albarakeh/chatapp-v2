@@ -17,7 +17,13 @@ class _LoginpageState extends State<Loginpage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Welcome Back " ,style: TextStyle(fontSize: 40),),
+          Row(
+            mainAxisSize: MainAxisSize.min, // Ensures minimal width
+            children: [
+              Text("Welcome Back ", style: TextStyle(fontSize: 40)),
+              Icon(Icons.handshake, size: 40),
+            ],
+          ),
           SizedBox(height: 30),
           const TextField(
             decoration: InputDecoration(
