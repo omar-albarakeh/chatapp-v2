@@ -22,6 +22,7 @@ class _SignuppageState extends State<Signuppage> {
               Icon(Icons.handshake, size: 40),
             ],
           ),
+          SizedBox(height: 30,),
           TextField(
             decoration: InputDecoration(
               labelText: "Email",
