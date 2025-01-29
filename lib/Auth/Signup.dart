@@ -18,7 +18,7 @@ class _SignupPageState extends State<SignupPage> {
         children: [
           Container(
             color: Colors.green,
-            height: 400,
+            height: 200,
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 40),
             child: const Row(
@@ -38,10 +38,15 @@ class _SignupPageState extends State<SignupPage> {
           ),
           Expanded(
             child: Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30)
+                )
+              ),
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
