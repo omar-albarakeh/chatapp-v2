@@ -42,7 +42,7 @@ class _SignupPageState extends State<SignupPage> {
               child: Stack(
                 children: [
                   Container(
-                    height: screenHeight * 0.5,
+                    height: screenHeight * 0.35,
                     width: screenWidth,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
@@ -55,7 +55,7 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ),
                   Container(
-                    height: screenHeight * 0.3,
+                    height: screenHeight * 0.35,
                     width: screenWidth,
                     decoration: BoxDecoration(
                       color: Color(0xFF172C10).withOpacity(0.8),
@@ -70,7 +70,7 @@ class _SignupPageState extends State<SignupPage> {
             bottom: 0,
             child: Container(
               width: screenWidth,
-              height: screenHeight * 0.7,
+              height: screenHeight * 0.65,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(60),
