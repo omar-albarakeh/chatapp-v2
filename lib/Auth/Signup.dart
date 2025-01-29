@@ -87,9 +87,25 @@ class _SignupPageState extends State<SignupPage> {
                             });
                           },
                           icon: Icon(_isPasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off)
-                      ),
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
+                    ),
+                    obscureText: _isPasswordVisible,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "password",
+                      prefixIcon: Icon(Icons.lock),
+                      border: OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
+                          icon: Icon(_isPasswordVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
                     ),
                     obscureText: _isPasswordVisible,
                   )
