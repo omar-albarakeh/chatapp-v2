@@ -92,6 +92,9 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     obscureText: _isPasswordVisible,
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextField(
                     decoration: InputDecoration(
                       labelText: "password",
