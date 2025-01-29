@@ -169,7 +169,8 @@ class _SignupPageState extends State<LoginPage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => SignupPage()));
+                                builder: (context) => SignupPage())
+                            );
                           },
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

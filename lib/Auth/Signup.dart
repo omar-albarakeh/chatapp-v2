@@ -43,7 +43,7 @@ class _SignupPageState extends State<SignupPage> {
             child: Stack(
               children: [
                 Container(
-                  height: screenHeight * 0.35,
+                  height: screenHeight * 0.25,
                   width: screenWidth,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -56,7 +56,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
                 Container(
-                  height: screenHeight * 0.35,
+                  height: screenHeight * 0.25,
                   width: screenWidth,
                   decoration: BoxDecoration(
                     color: Color(0xFF172C10).withOpacity(0.8),
@@ -79,7 +79,7 @@ class _SignupPageState extends State<SignupPage> {
             bottom: 0,
             child: Container(
               width: screenWidth,
-              height: screenHeight * 0.65,
+              height: screenHeight * 0.75,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(60),
@@ -99,6 +99,14 @@ class _SignupPageState extends State<SignupPage> {
                           style: TextStyle(color: Colors.black, fontSize: 30),
                         ),
                         SizedBox(height: 30),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: "username",
+                            prefixIcon: Icon(Icons.person),
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                        SizedBox(height: 15),
                         TextField(
                           decoration: InputDecoration(
                             labelText: "Email",
@@ -179,7 +187,20 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        Text("Have an account? LOGIN"),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => SignupPage())
+                            );
+                          },
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Dont have an Account?"),
+                                Text("Login", style: TextStyle(color: Colors.green)),
+                              ]
+                          ),
+                        )
                       ],
                     ),
                   ),
