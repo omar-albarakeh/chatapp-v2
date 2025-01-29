@@ -88,7 +88,8 @@ class _SignupPageState extends State<SignupPage> {
                           },
                           icon: Icon(_isPasswordVisible
                               ? Icons.visibility
-                              : Icons.visibility_off)),
+                              : Icons.visibility_off)
+                      ),
                       obscureText: _isPasswordVisible,
                     ),
                   )
