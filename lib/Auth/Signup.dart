@@ -64,6 +64,13 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                   ),
+                  Center(
+                      child: Image.asset(
+                        'lib/assets/Logo.png',
+                        height: screenHeight * 0.4,
+                        width: screenWidth*0.4,
+                      ),
+                  )
                 ],
               )),
           Positioned(
@@ -85,6 +92,8 @@ class _SignupPageState extends State<SignupPage> {
                     padding: EdgeInsets.all(24),
                     child: Column(
                       children: [
+                        Text("Welcome Back!",style: TextStyle(color: Colors.black,fontSize: 30),),
+                        SizedBox(height: 30,),
                         TextField(
                           decoration: InputDecoration(
                             labelText: "Email",
@@ -147,7 +156,9 @@ class _SignupPageState extends State<SignupPage> {
                           height: 50,
                           child: ElevatedButton(
                               onPressed: () {},
-                              child: Text("SignUp")),
+                              child: Text("SignUp"),
+                            onHover: Colors.green,
+                          ),
                         ),
                         SizedBox(height: 20,),
                         Text("have and account ? LOGIN"),
