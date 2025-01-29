@@ -146,8 +146,11 @@ class _SignupPageState extends State<SignupPage> {
                           width: 300,
                           height: 50,
                           child: ElevatedButton(
-                              onPressed: () {}, child: Text("SignUp")),
+                              onPressed: () {},
+                              child: Text("SignUp")),
                         ),
+                        SizedBox(height: 20,),
+                        Text("have and account ? LOGIN"),
                       ],
                     ),
                   ),
