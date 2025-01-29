@@ -25,8 +25,7 @@ class _SignupPageState extends State<SignupPage> {
                 height: screenHeight,
                 width: screenWidth * 0.5,
                 decoration: const BoxDecoration(
-                  color: Color(0xFF172C10),
-
+                    color: Color(0xFF172C10).withOpacity(0.8),
                 ),
               ),
               Container(
@@ -61,7 +60,7 @@ class _SignupPageState extends State<SignupPage> {
                   height: screenHeight * 0.3,
                   width: screenWidth,
                   decoration: BoxDecoration(
-                    color: Color(0xFF172C10).withOpacity(0.6),
+                    color: Color(0xFF172C10).withOpacity(0.8),
                     borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(60),
                     ),
