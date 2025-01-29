@@ -40,19 +40,36 @@ class _SignupPageState extends State<SignupPage> {
           ),
           Positioned(
             top: 0,
-            child: Container(
-              height: screenHeight * 0.3,
-              width: screenWidth,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('lib/assets/Auth_image.png'),
-                  fit: BoxFit.cover,
+            child: Stack(
+              children: [
+
+                Container(
+                  height: screenHeight * 0.3,
+                  width: screenWidth,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('lib/assets/Auth_image.png'),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(60),
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(60),
+
+                Container(
+                  height: screenHeight * 0.3,
+                  width: screenWidth,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF172C10).withOpacity(0.6),
+                    borderRadius: const BorderRadius.only(
+                      bottomRight: Radius.circular(60),
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              ],
+            )
+
           ),
           Positioned(
             bottom: 0,
