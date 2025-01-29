@@ -10,6 +10,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,41 +39,42 @@ class _SignupPageState extends State<SignupPage> {
             ],
           ),
           Positioned(
-              top: 0,
-              child: Stack(
-                children: [
-                  Container(
-                    height: screenHeight * 0.35,
-                    width: screenWidth,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('lib/assets/Auth_image.png'),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(60),
-                      ),
+            top: 0,
+            child: Stack(
+              children: [
+                Container(
+                  height: screenHeight * 0.35,
+                  width: screenWidth,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('lib/assets/Auth_image.png'),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(60),
                     ),
                   ),
-                  Container(
-                    height: screenHeight * 0.35,
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF172C10).withOpacity(0.8),
-                      borderRadius: const BorderRadius.only(
-                        bottomRight: Radius.circular(60),
-                      ),
+                ),
+                Container(
+                  height: screenHeight * 0.35,
+                  width: screenWidth,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF172C10).withOpacity(0.8),
+                    borderRadius: const BorderRadius.only(
+                      bottomRight: Radius.circular(60),
                     ),
                   ),
-                  Center(
-                      child: Image.asset(
-                        'lib/assets/Logo.png',
-                        height: screenHeight * 0.4,
-                        width: screenWidth*0.4,
-                      ),
-                  )
-                ],
-              )),
+                ),
+                Center(
+                  child: Image.asset(
+                    'lib/assets/Logo.png',
+                    height: screenHeight * 0.4,
+                    width: screenWidth * 0.4,
+                  ),
+                )
+              ],
+            ),
+          ),
           Positioned(
             bottom: 0,
             child: Container(
@@ -92,8 +94,11 @@ class _SignupPageState extends State<SignupPage> {
                     padding: EdgeInsets.all(24),
                     child: Column(
                       children: [
-                        Text("Welcome Back!",style: TextStyle(color: Colors.black,fontSize: 30),),
-                        SizedBox(height: 30,),
+                        Text(
+                          "Create Account",
+                          style: TextStyle(color: Colors.black, fontSize: 30),
+                        ),
+                        SizedBox(height: 30),
                         TextField(
                           decoration: InputDecoration(
                             labelText: "Email",
@@ -101,9 +106,7 @@ class _SignupPageState extends State<SignupPage> {
                             border: OutlineInputBorder(),
                           ),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
+                        SizedBox(height: 15),
                         TextField(
                           obscureText: !_isPasswordVisible,
                           decoration: InputDecoration(
@@ -124,9 +127,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
+                        SizedBox(height: 15),
                         TextField(
                           obscureText: !_isConfirmPasswordVisible,
                           decoration: InputDecoration(
@@ -148,41 +149,37 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
+                        SizedBox(height: 15),
                         Container(
                           width: 300,
                           height: 50,
                           child: MouseRegion(
                             onEnter: (_) {
                               setState(() {
-                                // Change the button's color when hovered
+                                _isHovered = true;
                               });
                             },
                             onExit: (_) {
                               setState(() {
-                                // Reset the button's color when the hover ends
+                                _isHovered = false;
                               });
                             },
                             child: ElevatedButton(
                               onPressed: () {},
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                                      (states) {
-                                    if (states.contains(MaterialState.hovered)) {
-                                      return Colors.greenAccent; // Hover color
-                                    }
-                                    return Colors.green; // Default color
-                                  },
-                                ),
+                                backgroundColor:
+                                MaterialStateProperty.all(
+                                    _isHovered ? Colors.greenAccent : Colors.green),
                               ),
-                              child: Text("SignUp",style: TextStyle(color: Colors.white),),
+                              child: Text(
+                                "SignUp",
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 20,),
-                        Text("have and account ? LOGIN"),
+                        SizedBox(height: 20),
+                        Text("Have an account? LOGIN"),
                       ],
                     ),
                   ),
