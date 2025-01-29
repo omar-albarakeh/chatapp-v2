@@ -96,22 +96,32 @@ class _SignupPageState extends State<SignupPage> {
                     height: 15,
                   ),
                   TextField(
+                    obscureText: !_isPasswordVisible,
                     decoration: InputDecoration(
-                      labelText: "password",
+                      labelText: "Password",
                       prefixIcon: Icon(Icons.lock),
                       border: OutlineInputBorder(),
                       suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _isPasswordVisible = !_isPasswordVisible;
-                            });
-                          },
-                          icon: Icon(_isPasswordVisible
-                              ? Icons.visibility_off
-                              : Icons.visibility)),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                        icon: Icon(
+                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                      ),
                     ),
-                    obscureText: _isPasswordVisible,
-                  )
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  ElevatedButton(
+                      onPressed: (){},
+                      child: Text("SignUp"))
                 ],
               ),
             ),
