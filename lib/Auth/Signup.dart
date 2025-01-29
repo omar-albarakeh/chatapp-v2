@@ -81,6 +81,8 @@ class _SignupPageState extends State<SignupPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Padding(
+                  padding:EdgeInsets.all(24),
                   TextField(
                     decoration: InputDecoration(
                       labelText: "email",
@@ -133,6 +135,7 @@ class _SignupPageState extends State<SignupPage> {
                         borderSide: BorderSide(color: Colors.green),
                       ),
                     ),
+                  ),
                   ),
                   SizedBox(
                     height: 15,
