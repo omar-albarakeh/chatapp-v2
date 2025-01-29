@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Signup.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -14,8 +16,14 @@ class _SignupPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double screenHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     return Scaffold(
       body: Stack(
@@ -169,7 +177,8 @@ class _SignupPageState extends State<LoginPage> {
                               style: ButtonStyle(
                                 backgroundColor:
                                 MaterialStateProperty.all(
-                                    _isHovered ? Colors.greenAccent : Colors.green),
+                                    _isHovered ? Colors.greenAccent : Colors
+                                        .green),
                               ),
                               child: Text(
                                 "Login",
@@ -180,11 +189,17 @@ class _SignupPageState extends State<LoginPage> {
                         ),
                         SizedBox(height: 20),
                         GestureDetector(
-                          onTap: (){Navigator.push(context ,MaterialPageRoute(builder :(context) =>SignupPage()));},
-                          child: Text("Dont have an Account? Signup",
-                              style: TextStyle(
-                                color: Colors.green
-                              ),),
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => SignupPage()));
+                          },
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Dont have an Account?"),
+                                Text("Signup ", style: TextStyle(color: Colors.green)),
+                              ]
+                          ),
                         )
                       ],
                     ),
