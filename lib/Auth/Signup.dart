@@ -25,7 +25,8 @@ class _SignupPageState extends State<SignupPage> {
                 height: screenHeight,
                 width: screenWidth * 0.5,
                 decoration: const BoxDecoration(
-                    color: Color(0xFF172C10).withOpacity(0.8),
+                  color: Color(0xFF172C10),
+
                 ),
               ),
               Container(
