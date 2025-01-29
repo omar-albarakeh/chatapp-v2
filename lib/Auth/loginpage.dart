@@ -136,28 +136,6 @@ class _SignupPageState extends State<LoginPage> {
                           ),
                         ),
                         SizedBox(height: 15),
-                        TextField(
-                          obscureText: !_isConfirmPasswordVisible,
-                          decoration: InputDecoration(
-                            labelText: "Confirm Password",
-                            prefixIcon: Icon(Icons.lock),
-                            border: OutlineInputBorder(),
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  _isConfirmPasswordVisible =
-                                  !_isConfirmPasswordVisible;
-                                });
-                              },
-                              icon: Icon(
-                                _isConfirmPasswordVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 15),
                         Container(
                           width: 300,
                           height: 50,
