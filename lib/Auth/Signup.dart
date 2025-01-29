@@ -13,34 +13,56 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          Container(
-            color: Colors.blue,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(30),
-                )
-            ),
-            width: double.infinity,
-            height: double.infinity,
-          ),
-          Positioned(
-            top: 300,
-            child: Container(
-              color: Colors.red,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
+        children: [
+          Row(
+            children: [
+              Container(
+                height: screenHeight,
+                width: screenWidth * 0.5,
+                decoration: const BoxDecoration(
+                  color: Color(0xFF172C10),
                 ),
               ),
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.height * 0.6,
+              Container(
+                height: screenHeight,
+                width: screenWidth * 0.5,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            top: 0,
+            child: Container(
+              height: screenHeight * 0.3,
+              width: screenWidth,
+              decoration: const BoxDecoration(
+                color: Color(0xFF172C10),
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(60),
+                ),
+              ),
             ),
-          )
-
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: screenWidth,
+              height: screenHeight * 0.7,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(60),
+                ),
+                color: Colors.white,
+              ),
+            ),
+          ),
         ],
       ),
     );
