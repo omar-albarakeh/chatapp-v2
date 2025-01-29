@@ -71,6 +71,18 @@ class _SignupPageState extends State<SignupPage> {
                       prefixIcon: Icon(Icons.email),
                       border:OutlineInputBorder(),
                     ),
+                  ),
+                  SizedBox(height: 20,),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "password",
+                      prefixIcon: Icon(Icons.lock),
+                      border:OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                          onPressed: onPressed,
+                          icon: icon)
+                    ),
+                    obscureText: _isPasswordVisible,
                   )
                 ],
               ),
