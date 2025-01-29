@@ -42,7 +42,7 @@ class _SignupPageState extends State<SignupPage> {
               child: Stack(
                 children: [
                   Container(
-                    height: screenHeight * 0.3,
+                    height: screenHeight * 0.5,
                     width: screenWidth,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
@@ -82,69 +82,75 @@ class _SignupPageState extends State<SignupPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                  padding:EdgeInsets.all(24),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: "email",
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: "password",
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _isPasswordVisible = !_isPasswordVisible;
-                            });
-                          },
-                          icon: Icon(_isPasswordVisible
-                              ? Icons.visibility_off
-                              : Icons.visibility)),
-                    ),
-                    obscureText: _isPasswordVisible,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextField(
-                    obscureText: !_isPasswordVisible,
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          });
-                        },
-                        icon: Icon(
-                          _isPasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
+                    padding: EdgeInsets.all(24),
+                    child: Column(
+                      children: [
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: "Email",
+                            prefixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(),
+                          ),
                         ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
-                      ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        TextField(
+                          obscureText: !_isPasswordVisible,
+                          decoration: InputDecoration(
+                            labelText: "Password",
+                            prefixIcon: Icon(Icons.lock),
+                            border: OutlineInputBorder(),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isPasswordVisible = !_isPasswordVisible;
+                                });
+                              },
+                              icon: Icon(
+                                _isPasswordVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        TextField(
+                          obscureText: !_isConfirmPasswordVisible,
+                          decoration: InputDecoration(
+                            labelText: "Confirm Password",
+                            prefixIcon: Icon(Icons.lock),
+                            border: OutlineInputBorder(),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isConfirmPasswordVisible =
+                                  !_isConfirmPasswordVisible;
+                                });
+                              },
+                              icon: Icon(
+                                _isConfirmPasswordVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          width: 300,
+                          height: 50,
+                          child: ElevatedButton(
+                              onPressed: () {}, child: Text("SignUp")),
+                        ),
+                      ],
                     ),
                   ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                      width: 300,
-                      height: 50,
-                      child: ElevatedButton(
-                          onPressed: () {}, child: Text("SignUp"))),
                 ],
               ),
             ),
