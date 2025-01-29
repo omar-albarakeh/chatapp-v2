@@ -154,10 +154,31 @@ class _SignupPageState extends State<SignupPage> {
                         Container(
                           width: 300,
                           height: 50,
-                          child: ElevatedButton(
+                          child: MouseRegion(
+                            onEnter: (_) {
+                              setState(() {
+                                // Change the button's color when hovered
+                              });
+                            },
+                            onExit: (_) {
+                              setState(() {
+                                // Reset the button's color when the hover ends
+                              });
+                            },
+                            child: ElevatedButton(
                               onPressed: () {},
-                              child: Text("SignUp"),
-                            onHover: Colors.green,
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                                      (states) {
+                                    if (states.contains(MaterialState.hovered)) {
+                                      return Colors.greenAccent; // Hover color
+                                    }
+                                    return Colors.green; // Default color
+                                  },
+                                ),
+                              ),
+                              child: Text("SignUp",style: TextStyle(color: Colors.white),),
+                            ),
                           ),
                         ),
                         SizedBox(height: 20,),
