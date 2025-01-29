@@ -18,6 +18,7 @@ class _SignupPageState extends State<SignupPage> {
         children: [
           Container(
             color: Colors.green,
+            height: 400,
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 40),
             child: const Row(
