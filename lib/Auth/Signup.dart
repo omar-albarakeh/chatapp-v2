@@ -61,6 +61,19 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 color: Colors.white,
               ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "email",
+                      prefixIcon: Icon(Icons.email),
+                      border:OutlineInputBorder(),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ],
