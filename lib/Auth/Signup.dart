@@ -18,19 +18,29 @@ class _SignupPageState extends State<SignupPage> {
         alignment: Alignment.center,
         children: <Widget>[
           Container(
+            color: Colors.blue,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(30),
+                )
+            ),
             width: double.infinity,
             height: double.infinity,
-            color: Colors.blue,
           ),
           Positioned(
             top: 300,
             child: Container(
-              decorat
-              width: 500,
-              height: 800,
               color: Colors.red,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                ),
+              ),
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.6,
             ),
-          ),
+          )
+
         ],
       ),
     );
