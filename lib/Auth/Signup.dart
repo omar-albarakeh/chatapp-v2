@@ -26,7 +26,6 @@ class _SignupPageState extends State<SignupPage> {
                 width: screenWidth * 0.5,
                 decoration: const BoxDecoration(
                   color: Color(0xFF172C10),
-
                 ),
               ),
               Container(
@@ -39,38 +38,34 @@ class _SignupPageState extends State<SignupPage> {
             ],
           ),
           Positioned(
-            top: 0,
-            child: Stack(
-              children: [
-
-                Container(
-                  height: screenHeight * 0.3,
-                  width: screenWidth,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('lib/assets/Auth_image.png'),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(60),
-                    ),
-                  ),
-                ),
-
-                Container(
-                  height: screenHeight * 0.3,
-                  width: screenWidth,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF172C10).withOpacity(0.8),
-                    borderRadius: const BorderRadius.only(
-                      bottomRight: Radius.circular(60),
+              top: 0,
+              child: Stack(
+                children: [
+                  Container(
+                    height: screenHeight * 0.3,
+                    width: screenWidth,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('lib/assets/Auth_image.png'),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(60),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            )
-
-          ),
+                  Container(
+                    height: screenHeight * 0.3,
+                    width: screenWidth,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF172C10).withOpacity(0.8),
+                      borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(60),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
           Positioned(
             bottom: 0,
             child: Container(
@@ -129,7 +124,9 @@ class _SignupPageState extends State<SignupPage> {
                           });
                         },
                         icon: Icon(
-                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
@@ -140,9 +137,11 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(
                     height: 15,
                   ),
-                  ElevatedButton(
-                      onPressed: (){},
-                      child: Text("SignUp"))
+                  Container(
+                      width: 300,
+                      height: 50,
+                      child: ElevatedButton(
+                          onPressed: () {}, child: Text("SignUp"))),
                 ],
               ),
             ),
