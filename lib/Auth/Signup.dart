@@ -26,6 +26,7 @@ class _SignupPageState extends State<SignupPage> {
                 width: screenWidth * 0.5,
                 decoration: const BoxDecoration(
                   color: Color(0xFF172C10),
+
                 ),
               ),
               Container(
@@ -43,7 +44,10 @@ class _SignupPageState extends State<SignupPage> {
               height: screenHeight * 0.3,
               width: screenWidth,
               decoration: const BoxDecoration(
-                color: Color(0xFF172C10),
+                image: DecorationImage(
+                  image: AssetImage('lib/assets/Auth_image.png'),
+                  fit: BoxFit.cover,
+                ),
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(60),
                 ),
