@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _SignupPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _SignupPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
   bool _isHovered = false;
@@ -179,7 +179,13 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        Text("Don't have an account? SignUp"),
+                        GestureDetector(
+                          onTap: (){Navigator.push(context ,MaterialPageRoute(builder :(context) =>SignupPage()));},
+                          child: Text("Dont have an Account? Signup",
+                              style: TextStyle(
+                                color: Colors.green
+                              ),),
+                        )
                       ],
                     ),
                   ),
