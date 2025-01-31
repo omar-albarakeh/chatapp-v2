@@ -1,3 +1,4 @@
+import 'package:chatapp/Auth/loginpage.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {
@@ -190,13 +191,13 @@ class _SignupPageState extends State<SignupPage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => SignupPage())
+                                builder: (context) => LoginPage())
                             );
                           },
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Dont have an Account?"),
+                                Text("Have an Account?"),
                                 Text("Login", style: TextStyle(color: Colors.green)),
                               ]
                           ),
