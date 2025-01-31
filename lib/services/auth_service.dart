@@ -6,8 +6,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
+  final String baseUrl = 'http://192.168.0.102:8000/api/auth';
+
   Future<bool> registerUser(BuildContext context, String name, String email, String password) async {
-    final url = Uri.parse('http://192.168.0.102:8000/api/auth/register');
+    final url = Uri.parse('$baseUrl/register');
 
     try {
       final response = await http.post(
@@ -24,29 +26,23 @@ class AuthService {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("User registration successful!")),
         );
-
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LoginPage()),
         );
-
         return true;
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Registration failed: ${response.body}")),
-        );
+        _showError(context, "Registration failed: ${response.body}");
         return false;
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Exception: $e")),
-      );
+      _showError(context, "Exception: $e");
       return false;
     }
   }
 
   Future<bool> login(BuildContext context, String email, String password) async {
-    final url = Uri.parse('http://192.168.0.102:8000/api/auth/login');
+    final url = Uri.parse('$baseUrl/login');
 
     try {
       final response = await http.post(
@@ -58,14 +54,15 @@ class AuthService {
         }),
       );
 
-      debugPrint("Response: ${response.statusCode} - ${response.body}");
-
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         final String token = responseData['token'];
 
+        // Ensure SharedPreferences plugin is initialized
         final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('auth_token', token);
+        await prefs.setString('token', token);
+
+        debugPrint("🔑 Token Saved: $token");
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Login successful!")),
@@ -75,38 +72,64 @@ class AuthService {
           context,
           MaterialPageRoute(builder: (context) => Homescreen()),
         );
-
         return true;
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Login failed: ${response.body}")),
-        );
+        _showError(context, "Login failed: ${response.body}");
         return false;
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Exception: $e")),
-      );
+      _showError(context, "Exception: $e");
       return false;
     }
   }
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('auth_token');
+    final token = prefs.getString('token');
+    debugPrint("🔍 Retrieved Token: $token");
+    return token;
   }
 
   Future<void> logout(BuildContext context) async {
+    final url = Uri.parse('$baseUrl/logout');
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('auth_token');
+    final token = prefs.getString('token');
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Logged out successfully!")),
-    );
+    if (token == null) {
+      _showError(context, "No token found. Already logged out?");
+      return;
+    }
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
-    );
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        await prefs.remove('token'); // Ensure token is removed after logout
+        debugPrint("✅ Token removed, user logged out.");
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Logged out successfully!")),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+      } else {
+        _showError(context, "Logout failed: ${response.body}");
+      }
+    } catch (e) {
+      _showError(context, "Exception: $e");
+    }
+  }
+
+  void _showError(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 }

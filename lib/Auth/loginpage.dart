@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() async {
     setState(() {
-      _isLoading = true; // Show loading
+      _isLoading = true;
     });
 
     bool success = await authService.login(
