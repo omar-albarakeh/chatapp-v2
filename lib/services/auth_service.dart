@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:chatapp/Auth/loginpage.dart';
 import 'package:chatapp/HomeScreen.dart';
 import 'package:flutter/material.dart';
@@ -45,42 +44,45 @@ class AuthService {
     }
   }
 
-  Future<bool> Login(BuildContext context ,String email,String password) async{
+  Future<bool> login(BuildContext context, String email, String password) async {
     final url = Uri.parse('http://192.168.0.102:8000/api/auth/login');
 
-    try{
-      final response =await http.post(
-          url,
+    try {
+      final response = await http.post(
+        url,
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-            'email':email,
-      'password':password,
-        })
+          'email': email,
+          'password': password,
+        }),
       );
+
       if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Login done!"))
+            SnackBar(content: Text("Login successful!"))
         );
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Homescreen()),
         );
 
         return true;
-      }
-        else
-          {
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Login failed!"))
-            );
-          }
+      } else {
+        final responseData = jsonDecode(response.body);
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Login failed: ${responseData['message']}"))
+        );
         return false;
-          }
-    catch (e) {
+      }
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Exception: $e"))
       );
       return false;
     }
-          }
-    }
+  }
+
+}
