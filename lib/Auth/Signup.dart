@@ -13,6 +13,11 @@ class _SignupPageState extends State<SignupPage> {
   bool _isConfirmPasswordVisible = false;
   bool _isHovered = false;
 
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController= TextEditingController();
+  final TextEditingController passwordController =TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -106,6 +111,7 @@ class _SignupPageState extends State<SignupPage> {
                             prefixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(),
                           ),
+                          controller: nameController,
                         ),
                         SizedBox(height: 15),
                         TextField(
@@ -117,6 +123,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         SizedBox(height: 15),
                         TextField(
+                          controller: emailController,
                           obscureText: !_isPasswordVisible,
                           decoration: InputDecoration(
                             labelText: "Password",
@@ -138,6 +145,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         SizedBox(height: 15),
                         TextField(
+                          controller: passwordController,
                           obscureText: !_isConfirmPasswordVisible,
                           decoration: InputDecoration(
                             labelText: "Confirm Password",
