@@ -1,29 +1,43 @@
+import 'package:chatapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
-
 import 'Signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState(); // ✅ Fixed Class Name
 }
 
-class _SignupPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> { // ✅ Fixed Class Name
   bool _isPasswordVisible = false;
-  bool _isConfirmPasswordVisible = false;
   bool _isHovered = false;
+  bool _isLoading = false; // ✅ Added Loading State
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final AuthService authService = AuthService();
+
+  void _login() async {
+    setState(() {
+      _isLoading = true; // Show loading
+    });
+
+    bool success = await authService.Login( // ✅ Fixed method name
+      context,
+      _emailController.text,
+      _passwordController.text,
+    );
+
+    setState(() {
+      _isLoading = false; // Hide loading
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Stack(
@@ -108,6 +122,7 @@ class _SignupPageState extends State<LoginPage> {
                         ),
                         SizedBox(height: 30),
                         TextField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             labelText: "Email",
                             prefixIcon: Icon(Icons.email),
@@ -116,6 +131,7 @@ class _SignupPageState extends State<LoginPage> {
                         ),
                         SizedBox(height: 15),
                         TextField(
+                          controller: _passwordController,
                           obscureText: !_isPasswordVisible,
                           decoration: InputDecoration(
                             labelText: "Password",
@@ -151,14 +167,15 @@ class _SignupPageState extends State<LoginPage> {
                               });
                             },
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: _isLoading ? null : _login, // ✅ Disable when loading
                               style: ButtonStyle(
                                 backgroundColor:
                                 MaterialStateProperty.all(
-                                    _isHovered ? Colors.greenAccent : Colors
-                                        .green),
+                                    _isHovered ? Colors.greenAccent : Colors.green),
                               ),
-                              child: Text(
+                              child: _isLoading
+                                  ? CircularProgressIndicator(color: Colors.white) // ✅ Show loader
+                                  : Text(
                                 "Login",
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -168,16 +185,19 @@ class _SignupPageState extends State<LoginPage> {
                         SizedBox(height: 20),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => SignupPage())
-                            );
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => SignupPage()));
                           },
                           child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("Dont have an Account?"),
-                                Text("Signup ", style: TextStyle(color: Colors.green)),
-                              ]
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Don't have an Account?"),
+                              Text(
+                                "Signup ",
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            ],
                           ),
                         )
                       ],

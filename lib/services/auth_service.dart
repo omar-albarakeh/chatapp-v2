@@ -3,6 +3,7 @@ import 'package:chatapp/Auth/loginpage.dart';
 import 'package:chatapp/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   Future<bool> registerUser(BuildContext context, String name, String email, String password) async {
@@ -44,7 +45,7 @@ class AuthService {
     }
   }
 
-  Future<bool> login(BuildContext context, String email, String password) async {
+  Future<bool> Login(BuildContext context, String email, String password) async {
     final url = Uri.parse('http://192.168.0.102:8000/api/auth/login');
 
     try {
@@ -57,23 +58,20 @@ class AuthService {
         }),
       );
 
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
+      debugPrint("Response: ${response.statusCode} - ${response.body}"); // ✅ Print response
 
+      if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("Login successful!"))
         );
-
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Homescreen()),
         );
-
         return true;
       } else {
-        final responseData = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Login failed: ${responseData['message']}"))
+            SnackBar(content: Text("Login failed: ${response.body}")) // ✅ Show actual error
         );
         return false;
       }
@@ -84,5 +82,6 @@ class AuthService {
       return false;
     }
   }
+
 
 }
