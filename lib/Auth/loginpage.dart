@@ -6,13 +6,13 @@ class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState(); // ✅ Fixed Class Name
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> { // ✅ Fixed Class Name
+class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
   bool _isHovered = false;
-  bool _isLoading = false; // ✅ Added Loading State
+  bool _isLoading = false;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -23,14 +23,14 @@ class _LoginPageState extends State<LoginPage> { // ✅ Fixed Class Name
       _isLoading = true; // Show loading
     });
 
-    bool success = await authService.Login( // ✅ Fixed method name
+    bool success = await authService.login(
       context,
       _emailController.text,
       _passwordController.text,
     );
 
     setState(() {
-      _isLoading = false; // Hide loading
+      _isLoading = false;
     });
   }
 
@@ -167,14 +167,14 @@ class _LoginPageState extends State<LoginPage> { // ✅ Fixed Class Name
                               });
                             },
                             child: ElevatedButton(
-                              onPressed: _isLoading ? null : _login, // ✅ Disable when loading
+                              onPressed: _isLoading ? null : _login,
                               style: ButtonStyle(
                                 backgroundColor:
                                 MaterialStateProperty.all(
                                     _isHovered ? Colors.greenAccent : Colors.green),
                               ),
                               child: _isLoading
-                                  ? CircularProgressIndicator(color: Colors.white) // ✅ Show loader
+                                  ? CircularProgressIndicator(color: Colors.white)
                                   : Text(
                                 "Login",
                                 style: TextStyle(color: Colors.white),

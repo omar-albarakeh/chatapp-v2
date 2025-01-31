@@ -20,9 +20,9 @@ class AuthService {
         }),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("User registration done!"))
+          const SnackBar(content: Text("User registration successful!")),
         );
 
         Navigator.pushReplacement(
@@ -33,19 +33,19 @@ class AuthService {
         return true;
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Registration failed: ${response.body}"))
+          SnackBar(content: Text("Registration failed: ${response.body}")),
         );
         return false;
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Exception: $e"))
+        SnackBar(content: Text("Exception: $e")),
       );
       return false;
     }
   }
 
-  Future<bool> Login(BuildContext context, String email, String password) async {
+  Future<bool> login(BuildContext context, String email, String password) async {
     final url = Uri.parse('http://192.168.0.102:8000/api/auth/login');
 
     try {
@@ -58,30 +58,55 @@ class AuthService {
         }),
       );
 
-      debugPrint("Response: ${response.statusCode} - ${response.body}"); // ✅ Print response
+      debugPrint("Response: ${response.statusCode} - ${response.body}");
 
       if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        final String token = responseData['token'];
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('auth_token', token);
+
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Login successful!"))
+          const SnackBar(content: Text("Login successful!")),
         );
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Homescreen()),
         );
+
         return true;
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Login failed: ${response.body}")) // ✅ Show actual error
+          SnackBar(content: Text("Login failed: ${response.body}")),
         );
         return false;
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Exception: $e"))
+        SnackBar(content: Text("Exception: $e")),
       );
       return false;
     }
   }
 
+  Future<String?> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('auth_token');
+  }
 
+  Future<void> logout(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('auth_token');
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Logged out successfully!")),
+    );
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+  }
 }
