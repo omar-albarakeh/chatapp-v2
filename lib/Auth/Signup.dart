@@ -1,6 +1,8 @@
 import 'package:chatapp/Auth/loginpage.dart';
 import 'package:flutter/material.dart';
 
+import '../services/auth_service.dart';
+
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
@@ -13,10 +15,34 @@ class _SignupPageState extends State<SignupPage> {
   bool _isConfirmPasswordVisible = false;
   bool _isHovered = false;
 
-
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController= TextEditingController();
-  final TextEditingController passwordController =TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  final AuthService authService = AuthService();
+
+  void _register() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Passwords do not match!")),
+      );
+      return;
+    }
+
+    bool success = await authService.registerUser(
+      context,
+      nameController.text,
+      emailController.text,
+      passwordController.text,
+    );
+
+    if (success) {
+      print("Registration successful!");
+    } else {
+      print("Registration failed.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,15 +132,16 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         SizedBox(height: 30),
                         TextField(
+                          controller: nameController,
                           decoration: InputDecoration(
-                            labelText: "username",
+                            labelText: "Username",
                             prefixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(),
                           ),
-                          controller: nameController,
                         ),
                         SizedBox(height: 15),
                         TextField(
+                          controller: emailController,
                           decoration: InputDecoration(
                             labelText: "Email",
                             prefixIcon: Icon(Icons.email),
@@ -123,7 +150,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         SizedBox(height: 15),
                         TextField(
-                          controller: emailController,
+                          controller: passwordController,
                           obscureText: !_isPasswordVisible,
                           decoration: InputDecoration(
                             labelText: "Password",
@@ -145,7 +172,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         SizedBox(height: 15),
                         TextField(
-                          controller: passwordController,
+                          controller: confirmPasswordController,
                           obscureText: !_isConfirmPasswordVisible,
                           decoration: InputDecoration(
                             labelText: "Confirm Password",
@@ -182,10 +209,9 @@ class _SignupPageState extends State<SignupPage> {
                               });
                             },
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: _register,
                               style: ButtonStyle(
-                                backgroundColor:
-                                MaterialStateProperty.all(
+                                backgroundColor: MaterialStateProperty.all(
                                     _isHovered ? Colors.greenAccent : Colors.green),
                               ),
                               child: Text(
@@ -198,14 +224,15 @@ class _SignupPageState extends State<SignupPage> {
                         SizedBox(height: 20),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => LoginPage())
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginPage()),
                             );
                           },
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Have an Account?"),
+                                Text("Have an Account? "),
                                 Text("Login", style: TextStyle(color: Colors.green)),
                               ]
                           ),

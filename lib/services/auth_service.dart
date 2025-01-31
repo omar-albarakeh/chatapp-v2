@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:chatapp/Auth/loginpage.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  Future<void> registerUser(String name, String email, String password) async {
-    final url = Uri.parse('http://127.0.0.1:8000/api/auth/register');
+  Future<bool> registerUser(BuildContext context, String name, String email, String password) async {
+    final url = Uri.parse('http://192.168.0.102:8000/api/auth/register');
 
     try {
       final response = await http.post(
@@ -17,13 +19,27 @@ class AuthService {
       );
 
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        print('Success: ${data['message']}');
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("User registration done!"))
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+
+        return true;
       } else {
-        print('Error: ${response.body}');
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Registration failed: ${response.body}"))
+        );
+        return false;
       }
     } catch (e) {
-      print('Exception: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Exception: $e"))
+      );
+      return false;
     }
   }
 }
