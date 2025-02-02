@@ -1,3 +1,4 @@
+import 'package:chatapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -8,8 +9,15 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  String? token;
+
+  Future<void> logout() async {
+    final AuthService authService = AuthService();
+    await authService.logout(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold();
   }
 }

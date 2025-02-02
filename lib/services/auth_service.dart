@@ -58,11 +58,11 @@ class AuthService {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         final String token = responseData['token'];
 
-        // Ensure SharedPreferences plugin is initialized
-        final prefs = await SharedPreferences.getInstance();
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', token);
 
-        debugPrint("🔑 Token Saved: $token");
+        final savedToken = prefs.getString('token');
+        debugPrint("✅ Token Successfully Saved: $savedToken");
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Login successful!")),
@@ -83,8 +83,9 @@ class AuthService {
     }
   }
 
+
   Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     debugPrint("🔍 Retrieved Token: $token");
     return token;
@@ -92,7 +93,7 @@ class AuthService {
 
   Future<void> logout(BuildContext context) async {
     final url = Uri.parse('$baseUrl/logout');
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
 
     if (token == null) {
@@ -110,7 +111,7 @@ class AuthService {
       );
 
       if (response.statusCode == 200) {
-        await prefs.remove('token'); // Ensure token is removed after logout
+        await prefs.remove('token');
         debugPrint("✅ Token removed, user logged out.");
 
         ScaffoldMessenger.of(context).showSnackBar(
